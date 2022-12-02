@@ -7,7 +7,8 @@ import random
 import argparse
 import os
 import sys
-sys.path.append('pytorch-cifar')
+# sys.path.append('pytorch-cifar')
+sys.path.append('./NYU-ML-in-CyberSecurity-Proj/simple-blackbox-attack-master/pytorch-cifar')
 import models
 from simba import SimBA
 
