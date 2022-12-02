@@ -1,0 +1,7 @@
+CIFAR-10
+			Test Acc		Train Acc		Train Loss		Test Loss
+	GoogLeNet	95.280%		100%		0.002		0.152	
+	ResNet18		95.340%		99.996%		0.002		0.176
+	MobileNet	90.890%		96.944%		0.089		0.308
+	SimpleDLA	95.130%		99.994%		0.002		0.205
+	
