@@ -119,7 +119,7 @@ class SimpleDLA(nn.Module):
 def test():
     net = SimpleDLA()
     print(net)
-    x = torch.randn(1, 3, 32, 32)
+    x = torch.randn(1, 3, 28, 28)
     y = net(x)
     print(y.size())
 
