@@ -79,7 +79,7 @@ class SimpleDLA(nn.Module):
     def __init__(self, block=BasicBlock, num_classes=10):
         super(SimpleDLA, self).__init__()
         self.base = nn.Sequential(
-            nn.Conv2d(3, 16, kernel_size=3, stride=1, padding=1, bias=False),
+            nn.Conv2d(1, 16, kernel_size=3, stride=1, padding=1, bias=False),
             nn.BatchNorm2d(16),
             nn.ReLU(True)
         )
@@ -119,7 +119,7 @@ class SimpleDLA(nn.Module):
 def test():
     net = SimpleDLA()
     print(net)
-    x = torch.randn(1, 3, 32, 32)
+    x = torch.randn(1, 1, 32, 32)
     y = net(x)
     print(y.size())
 
