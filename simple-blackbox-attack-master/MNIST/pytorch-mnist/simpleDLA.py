@@ -147,8 +147,8 @@ def test(epoch):
         torch.save(state, './checkpoint/SimpleDLA.pth')
         best_acc = acc
 
-
-for epoch in range(start_epoch, start_epoch+200):
-    train(epoch)
-    test(epoch)
+epoch = 50
+for e in range(start_epoch, start_epoch+epoch):
+    train(e)
+    test(e)
     scheduler.step()
