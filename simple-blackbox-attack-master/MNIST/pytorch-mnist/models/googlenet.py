@@ -57,7 +57,7 @@ class GoogLeNet(nn.Module):
     def __init__(self):
         super(GoogLeNet, self).__init__()
         self.pre_layers = nn.Sequential(
-            nn.Conv2d(1, 192, kernel_size=3, padding=1),
+            nn.Conv2d(3, 192, kernel_size=3, padding=1),
             nn.BatchNorm2d(192),
             nn.ReLU(True),
         )
@@ -100,7 +100,7 @@ class GoogLeNet(nn.Module):
 
 def test():
     net = GoogLeNet()
-    x = torch.randn(1,1,32,32)
+    x = torch.randn(1,3,32,32)
     y = net(x)
     print(y.size())
 
