@@ -8,7 +8,7 @@ import argparse
 import os
 import sys
 # sys.path.append('pytorch-mnist')
-sys.path.append('./NYU-ML-in-CyberSecurity-Proj/simple-blackbox-attack-master/pytorch-mnist')
+sys.path.append('./NYU-ML-in-CyberSecurity-Proj/simple-blackbox-attack-master/MNIST/pytorch-mnist')
 import models
 from simba import SimBA
 
@@ -45,7 +45,7 @@ model.load_state_dict(checkpoint['net'])
 model.eval()
 image_size = 32
 testset = dset.MNIST(root=args.data_root, train=False, download=True, transform=utils.MNIST_TRANSFORM)
-attacker = SimBA(model, 'MNIST', image_size)
+attacker = SimBA(model, 'mnist', image_size)
 
 # load sampled images or sample new ones
 # this is to ensure all attacks are run on the same set of correctly classified images
@@ -62,7 +62,7 @@ else:
         idx = torch.arange(0, images.size(0)).long()[preds.ne(labels)]
         for i in list(idx):
             images[i], labels[i] = testset[random.randint(0, len(testset) - 1)]
-        preds[idx], _ = utils.get_preds(model, images[idx], 'MNIST', batch_size=args.batch_size)
+        preds[idx], _ = utils.get_preds(model, images[idx], 'mnist', batch_size=args.batch_size)
     torch.save({'images': images, 'labels': labels}, batchfile)
 
 if args.order == 'rand':

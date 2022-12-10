@@ -126,7 +126,7 @@ def ResNet152():
 
 def test():
     net = ResNet18()
-    y = net(torch.randn(1, 3, 28, 28))
+    y = net(torch.randn(1, 1, 32, 32))
     print(y.size())
 
 # test()
