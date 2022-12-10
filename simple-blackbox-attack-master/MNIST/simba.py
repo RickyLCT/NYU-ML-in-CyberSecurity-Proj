@@ -13,8 +13,8 @@ class SimBA:
     
     def expand_vector(self, x, size):
         batch_size = x.size(0)
-        x = x.view(-1, 3, size, size)
-        z = torch.zeros(batch_size, 3, self.image_size, self.image_size)
+        x = x.view(-1, 1, size, size)
+        z = torch.zeros(batch_size, 1, self.image_size, self.image_size)
         z[:, :, :size, :size] = x
         return z
         
@@ -62,18 +62,18 @@ class SimBA:
         assert self.image_size == image_size
         # sample a random ordering for coordinates independently per batch element
         if order == 'rand':
-            indices = torch.randperm(3 * freq_dims * freq_dims)[:max_iters]
+            indices = torch.randperm(1 * freq_dims * freq_dims)[:max_iters]
         elif order == 'diag':
-            indices = utils.diagonal_order(image_size, 3)[:max_iters]
+            indices = utils.diagonal_order(image_size, 1)[:max_iters]
         elif order == 'strided':
-            indices = utils.block_order(image_size, 3, initial_size=freq_dims, stride=stride)[:max_iters]
+            indices = utils.block_order(image_size, 1, initial_size=freq_dims, stride=stride)[:max_iters]
         else:
-            indices = utils.block_order(image_size, 3)[:max_iters]
+            indices = utils.block_order(image_size, 1)[:max_iters]
         if order == 'rand':
             expand_dims = freq_dims
         else:
             expand_dims = image_size
-        n_dims = 3 * expand_dims * expand_dims
+        n_dims = 1 * expand_dims * expand_dims
         x = torch.zeros(batch_size, n_dims)
         # logging tensors
         probs = torch.zeros(batch_size, max_iters)

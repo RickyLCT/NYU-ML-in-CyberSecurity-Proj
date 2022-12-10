@@ -24,7 +24,7 @@ parser.add_argument('--num_iters', type=int, default=0, help='maximum number of 
 parser.add_argument('--log_every', type=int, default=10, help='log every n iterations')
 parser.add_argument('--epsilon', type=float, default=0.2, help='step size per iteration')
 parser.add_argument('--linf_bound', type=float, default=0.0, help='L_inf bound for frequency space attack')
-parser.add_argument('--freq_dims', type=int, default=32, help='dimensionality of 2D frequency space')
+parser.add_argument('--freq_dims', type=int, default=28, help='dimensionality of 2D frequency space')
 parser.add_argument('--order', type=str, default='rand', help='(random) order of coordinate selection')
 parser.add_argument('--stride', type=int, default=7, help='stride for block order')
 parser.add_argument('--targeted', action='store_true', help='perform targeted attack')
@@ -43,7 +43,7 @@ model = torch.nn.DataParallel(model)
 checkpoint = torch.load(args.model_ckpt)
 model.load_state_dict(checkpoint['net'])
 model.eval()
-image_size = 32
+image_size = 28
 testset = dset.MNIST(root=args.data_root, train=False, download=True, transform=utils.MNIST_TRANSFORM)
 attacker = SimBA(model, 'mnist', image_size)
 
@@ -55,7 +55,7 @@ if os.path.isfile(batchfile):
     images = checkpoint['images']
     labels = checkpoint['labels']
 else:
-    images = torch.zeros(args.num_runs, 3, image_size, image_size)
+    images = torch.zeros(args.num_runs, 1, image_size, image_size)
     labels = torch.zeros(args.num_runs).long()
     preds = labels + 1
     while preds.ne(labels).sum() > 0:
@@ -66,9 +66,9 @@ else:
     torch.save({'images': images, 'labels': labels}, batchfile)
 
 if args.order == 'rand':
-    n_dims = 3 * args.freq_dims * args.freq_dims
+    n_dims = 1 * args.freq_dims * args.freq_dims
 else:
-    n_dims = 3 * image_size * image_size
+    n_dims = 1 * image_size * image_size
 if args.num_iters > 0:
     max_iters = int(min(n_dims, args.num_iters))
 else:

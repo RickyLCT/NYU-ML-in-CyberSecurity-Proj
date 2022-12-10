@@ -1,6 +1,18 @@
-CIFAR-10
-			Test Acc		Train Acc		Train Loss	Test Loss
-	ResNet18	98.150%		98.417%		0.051		0.061
+MNIST
+			Test Acc		Train Acc		Train Loss		Test Loss
+	ResNet18		98.150%		98.417%		0.051		0.061
 	MobileNet	97.170%		97.600%		0.080		0.098
 	SimpleDLA	98.360%		98.323%		0.056		0.052
-	
+
+
+
+	Targeted		Iteration		Queries		Prob		Remaining		
+	ResNet18		784		873.22		0.26		0.30
+	MobileNet	784		878.82		0.24		0.46
+	SimpleDLA	784		694.48		0.27		0.16
+
+
+	Untargeted	Iteration		Queries		Prob		Remaining		
+	ResNet18		740		313.32		0.37		0.02
+	MobileNet	730		214.40		0.44		0.02
+	SimpleDLA	440		197.04		0.39		0.02
